@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
 
+    AudioManager audioManager;
+
     float? lastGroundedTime;
 
     float? jumpButtonPressedTime;
@@ -39,13 +42,14 @@ public class PlayerController : MonoBehaviour
     float ySpeed;
 
     float originalStepOffset;
+    private bool isLanding; // Track if the player was falling to land
 
-    
     private void Awake()
     {
         cameraController = Camera.main.GetComponent<CameraController>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         originalStepOffset = characterController.stepOffset;
     }
 
@@ -81,10 +85,17 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
             animator.SetBool("IsFalling", false);
 
+            if (isLanding) // If the player was falling before touching the ground, play landing sound
+            {
+                audioManager.PlayJumpingLand();
+                isLanding = false; // Reset flag after playing the sound
+            }
+
             if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
             {
                 ySpeed = jumpSpeed;
                 animator.SetBool("IsJumping", true);
+                audioManager.PlayJumpingStart();
                 isJumping = true;
                 jumpButtonPressedTime = null;
                 lastGroundedTime = null;
@@ -99,6 +110,7 @@ public class PlayerController : MonoBehaviour
             if ((isJumping && ySpeed < 0) || ySpeed < -2)
             {
                 animator.SetBool("IsFalling", true);
+                isLanding = true; // Set flag to play landing sound when the player touches the ground
             }
         }
 
@@ -107,17 +119,34 @@ public class PlayerController : MonoBehaviour
             targetRotation = Quaternion.LookRotation(moveDir, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-        else
-        {
-            animator.SetBool("IsMoving", false);
-        }
 
         if (isGrounded) {            
             animator.SetFloat("MoveAmount", moveAmount, 0.2f, Time.deltaTime);
         }
+
         Vector3 velocity = moveDir * moveAmount * moveSpeed;
         velocity.y = ySpeed;
-        characterController.Move(velocity * Time.deltaTime); 
+        characterController.Move(velocity * Time.deltaTime);
+
+        HandleWalkingRunningSound(moveAmount);
+    }
+
+    /// <summary>
+    /// Correctly handles walking and running sounds without repeating them every frame.
+    /// </summary>
+    private void HandleWalkingRunningSound(float moveAmount)
+    {
+        if (isGrounded && moveAmount > 0)
+        {
+            if (moveAmount < 0.5f)
+            {
+                audioManager.PlayWalking();
+            }
+            else
+            {
+                audioManager.PlayRunning();
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
