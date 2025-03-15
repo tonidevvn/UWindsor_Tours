@@ -8,6 +8,8 @@ TagManager:
   - Cloth1
   - Cloth2
   - Obstacles
+  - Building
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Obstacles
+  - Obstacle
   - 
   - 
   - 
