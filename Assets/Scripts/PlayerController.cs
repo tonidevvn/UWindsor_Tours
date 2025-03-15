@@ -107,14 +107,11 @@ public class PlayerController : MonoBehaviour
             targetRotation = Quaternion.LookRotation(moveDir, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-        else
-        {
-            animator.SetBool("IsMoving", false);
-        }
 
         if (isGrounded) {            
             animator.SetFloat("MoveAmount", moveAmount, 0.2f, Time.deltaTime);
         }
+
         Vector3 velocity = moveDir * moveAmount * moveSpeed;
         velocity.y = ySpeed;
         characterController.Move(velocity * Time.deltaTime); 
