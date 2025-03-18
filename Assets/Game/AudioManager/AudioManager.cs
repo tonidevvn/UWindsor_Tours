@@ -13,6 +13,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] jumpingStartSound;
     public AudioClip[] jumpingLandSound;
 
+    [Header("--- UI Sounds ---")]
+    public AudioClip[] mouseClickSound;
+    public AudioClip[] mouseHoverSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,5 +47,14 @@ public class AudioManager : MonoBehaviour
     public void PlayJumpingLand()
     {
         sfxSource.PlayOneShot(jumpingLandSound[Random.Range(0, jumpingLandSound.Length)]);
+    }
+
+    public void PlayMouseClick()
+    {
+        sfxSource.PlayOneShot(mouseClickSound[Random.Range(0, mouseClickSound.Length)]);
+    }
+    public void PlayMouseHover()
+    {
+        sfxSource.PlayOneShot(mouseHoverSound[Random.Range(0, mouseHoverSound.Length)]);
     }
 }
