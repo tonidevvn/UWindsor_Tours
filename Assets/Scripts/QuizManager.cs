@@ -12,6 +12,8 @@ public class QuizManager : MonoBehaviour
     public GameObject programPanel;
     public GameObject quizPanel;
     public GameObject resultsPanel;
+    public GameObject popupCanvas;
+
 
     [Header("Welcome Panel UI")]
     public Text welcomeText;
@@ -70,6 +72,7 @@ public class QuizManager : MonoBehaviour
 
     public void OpenQuiz()
     {
+        popupCanvas.SetActive(true);
         HideAllPanels();
         ShowWelcomePanel();
         playerController.enabled = false;
@@ -578,15 +581,17 @@ public class QuizManager : MonoBehaviour
         ShowProgramPanel(currentProgram);
     }
 
-    void ClosePanel()
+    public bool IsOpened()
+    {
+        return popupCanvas.activeSelf;
+    }
+
+    public void ClosePanel()
     {
         HideAllPanels();
+        popupCanvas.SetActive(false);
         // Re-enable player movement and animation
         playerController.enabled = true;
-        // Lock and hide the cursor again when quiz is closed
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
     }
 }
 
