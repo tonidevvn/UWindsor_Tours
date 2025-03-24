@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        if (isGrounded) {            
+        if (isGrounded) {
             animator.SetFloat("MoveAmount", moveAmount, 0.2f, Time.deltaTime);
         }
 

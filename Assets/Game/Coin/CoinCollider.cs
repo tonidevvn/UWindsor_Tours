@@ -84,6 +84,12 @@ public class CoinCollider : MonoBehaviour
         StartCoroutine(RespawnCoin());
     }
 
+    public void AddCoins(int amount)
+    {
+        coinCount += amount;  // Update the internal counter
+        cointCountText.text = "Knowledge Coins: " + coinCount;  // Update UI
+    }
+
     private void ShowDialog()
     {
         dialogBox.SetActive(true); // Show the pop-up
