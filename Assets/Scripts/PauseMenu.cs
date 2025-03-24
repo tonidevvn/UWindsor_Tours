@@ -5,12 +5,13 @@ public class PauseMenu : MonoBehaviour
 {
     private VisualElement pauseMenu;
 
+    public QuizManager quizManagerObject;
+
     bool isPaused;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        UnityEngine.Cursor.visible = false;
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         pauseMenu = root.Q<VisualElement>("pause-menu");
         root.Q<Button>("resume-btn").clicked += () => ResumeGame();
@@ -37,7 +38,6 @@ public class PauseMenu : MonoBehaviour
 
     private void BackToMainMenu()
     {
-        UnityEngine.Cursor.visible = true;
         Loader.LoadMenu();
     }
 
@@ -46,14 +46,20 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            UnityEngine.Cursor.visible = isPaused;
-            if (isPaused)
+            if (quizManagerObject.IsOpened())
             {
-                ResumeGame();
+                quizManagerObject.ClosePanel();
             }
             else
             {
-                PauseGame();
+                if (isPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
         }
     }

@@ -11,9 +11,6 @@ public class QuizIconTrigger : MonoBehaviour
         if (quizManager != null)
         {
             quizManager.OpenQuiz();
-            // Unlock the cursor so the user can interact with UI
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
     }
 
