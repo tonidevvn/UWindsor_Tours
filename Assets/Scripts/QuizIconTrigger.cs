@@ -10,7 +10,7 @@ public class QuizIconTrigger : MonoBehaviour
         // Check if the player clicks on the icon and the quizManager is assigned
         if (quizManager != null)
         {
-            quizManager.OpenWelcomePanel();
+            quizManager.OpenQuiz();
             // Unlock the cursor so the user can interact with UI
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
