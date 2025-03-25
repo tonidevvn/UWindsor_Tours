@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;    
-    
-    [SerializeField] float rotationSpeed = 500f;
+    [SerializeField] float moveSpeed = 5f;
+
+    [SerializeField] float rotationSpeed = 5f;
+
+    [SerializeField] float directionBlendSpeed = 5f; // how fast to blend between directions
 
     [Header("Ground Check Settings")]
     [SerializeField] float groundCheckRadius = 0.2f;
@@ -41,6 +43,10 @@ public class PlayerController : MonoBehaviour
 
     float ySpeed;
 
+    private Vector3 cachedMoveDir = Vector3.zero;
+    private Vector3 lastMoveInput = Vector3.zero;
+    private bool isDirectionUpdatedAfterAlignment = false;
+
     float originalStepOffset;
     private bool isLanding; // Track if the player was falling to land
 
@@ -51,6 +57,18 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         originalStepOffset = characterController.stepOffset;
+        if (animator != null)
+        {
+            if (!animator.isInitialized)
+            {
+                animator.Rebind();
+                animator.Update(0f);
+                animator.SetFloat("MoveAmount", 0f);
+                animator.SetBool("IsGrounded", true);
+                animator.SetBool("IsJumping", false);
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -58,11 +76,23 @@ public class PlayerController : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal"); // Returns a float value between -1 and 1
         float v = Input.GetAxis("Vertical"); // Returns a float value between -1 and 1
-
         float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
-
         var moveInput = new Vector3(h, 0, v).normalized;
-        var moveDir = cameraController.PlanarRotation * moveInput;
+
+        // Refresh or blend cached direction
+        if (moveInput != lastMoveInput)
+        {
+            if (moveInput != Vector3.zero)
+            {
+                UpdateCachedMoveDir(moveInput); // New key pressed → refresh direction
+            }
+            else
+            {
+                cachedMoveDir = Vector3.zero;   // Key released → stop movement
+            }
+
+            lastMoveInput = moveInput;
+        }
 
         ySpeed += Physics.gravity.y * Time.deltaTime;
         if (characterController.isGrounded)
@@ -114,21 +144,35 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (moveDir != Vector3.zero)
+        if (moveInput != Vector3.zero)
         {
-            targetRotation = Quaternion.LookRotation(moveDir, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            targetRotation = Quaternion.LookRotation(cachedMoveDir, Vector3.up);
+
+            float angleDiff = Quaternion.Angle(transform.rotation, targetRotation);
+            if (angleDiff > 1f)
+            {
+                float smoothFactor = Mathf.Clamp01((angleDiff / 180f) * 0.5f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothFactor * rotationSpeed * Time.deltaTime);
+            }
         }
 
         if (isGrounded) {
             animator.SetFloat("MoveAmount", moveAmount, 0.2f, Time.deltaTime);
         }
 
-        Vector3 velocity = moveDir * moveAmount * moveSpeed;
+        // Move player
+        Vector3 velocity = cachedMoveDir * moveAmount * moveSpeed;
         velocity.y = ySpeed;
         characterController.Move(velocity * Time.deltaTime);
 
         HandleWalkingRunningSound(moveAmount);
+    }
+
+    private void UpdateCachedMoveDir(Vector3 moveInput)
+    {
+        Vector3 camForward = cameraController.PlanarRotation * Vector3.forward;
+        Vector3 camRight = cameraController.PlanarRotation * Vector3.right;
+        cachedMoveDir = (camForward * moveInput.z + camRight * moveInput.x).normalized;
     }
 
     /// <summary>

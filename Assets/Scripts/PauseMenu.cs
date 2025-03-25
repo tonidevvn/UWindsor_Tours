@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
 
     private void ResumeGame()
     {
+        Debug.Log("Game Resumed");
         isPaused = false;
         pauseMenu.style.display = DisplayStyle.None;
         Time.timeScale = 1;
@@ -31,6 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     private void PauseGame()
     {
+        Debug.Log("Game Paused");
         isPaused = true;
         pauseMenu.style.display = DisplayStyle.Flex;
         Time.timeScale = 0;
