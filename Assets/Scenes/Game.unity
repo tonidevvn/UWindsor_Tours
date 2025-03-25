@@ -5050,13 +5050,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1333960456}
+  followOffset: {x: 0, y: 2, z: 0}
   rotationSpeed: 2
   distance: 4
   minVerticalAngle: 0
   maxVerticalAngle: 60
-  framingOffset: {x: 0.5, y: 1}
   invertX: 1
   invertY: 1
+  followRotationSpeed: 2
+  followSmoothTime: 0.2
+  rotationDamping: 8
+  followDelay: 1.5
 --- !u!114 &901739861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6282,14 +6286,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130458476}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.536739}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -4.389}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 160361070}
   m_Father: {fileID: 2120437643}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -1.8276405, y: -0.38194323}
@@ -7942,6 +7946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 500
+  directionBlendSpeed: 5
   groundCheckRadius: 0.2
   groundCheckOffset: {x: 0, y: 0.1, z: 0.07}
   groundLayer:
@@ -13744,7 +13749,7 @@ Transform:
   m_GameObject: {fileID: 2120437642}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9176406, y: 2.226943, z: 4.3347387}
+  m_LocalPosition: {x: 15.97, y: 2.4, z: -3.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
