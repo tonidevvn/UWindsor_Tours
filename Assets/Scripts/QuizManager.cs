@@ -66,7 +66,7 @@ public class QuizManager : MonoBehaviour
         HideAllPanels();
         if (coinCollider == null) // Assign only if not set in the Inspector
         {
-            coinCollider = FindObjectOfType<CoinCollider>(); 
+            coinCollider = FindFirstObjectByType<CoinCollider>(); 
         }
     }
 
