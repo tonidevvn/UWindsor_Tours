@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float rotationSpeed = 5f;
 
-    [SerializeField] float directionBlendSpeed = 5f; // how fast to blend between directions
-
     [Header("Ground Check Settings")]
     [SerializeField] float groundCheckRadius = 0.2f;
 
@@ -45,7 +43,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 cachedMoveDir = Vector3.zero;
     private Vector3 lastMoveInput = Vector3.zero;
-    private bool isDirectionUpdatedAfterAlignment = false;
 
     float originalStepOffset;
     private bool isLanding; // Track if the player was falling to land

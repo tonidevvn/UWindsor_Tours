@@ -19,12 +19,12 @@ public class MainMenu: MonoBehaviour
 
     private void StartGame() {
         audioManager.PlayMouseClick();
-        Loader.Load("Game");
+        Loader.LoadGame();
     }
 
     private void OpenSettings() {
         audioManager.PlayMouseClick();
-        Debug.Log("Settings opened!");
+        Loader.LoadSettingsMenu();
     }
 
     private void QuitGame() {

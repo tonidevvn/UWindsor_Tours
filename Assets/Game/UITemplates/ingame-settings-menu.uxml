@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/MenuStyles.uss?fileID=7433441132597879392&amp;guid=d3969aabf8fd85d41aa53ff435f10c7c&amp;type=3#MenuStyles" />
+    <ui:VisualElement name="ingame-settings-menu" style="flex-grow: 1; align-items: center; justify-content: center; margin-bottom: 0; align-content: center; margin-top: 0; align-self: auto; display: none; background-color: rgba(0, 0, 0, 0.45);">
+        <ui:Toggle name="fullscreen-toggle" label="FullScreen" class="settings-menu-label" style="width: 300px; margin-bottom: 10px; background-color: rgba(255, 255, 255, 0);" />
+        <ui:DropdownField name="graphics-dropdown" label="Graphics Quality" class="settings-menu-label" style="width: 300px; margin-bottom: 10px; color: rgb(255, 255, 255); background-color: rgba(255, 255, 255, 0);" />
+        <ui:Slider name="music-slider" low-value="0" high-value="1" label="Music Volume" value="0.5" class="settings-menu-label" style="width: 300px; margin-bottom: 10px; background-color: rgba(255, 255, 255, 0);" />
+        <ui:Slider name="sfx-slider" low-value="0" high-value="1" label="SFX Volume" fill="false" value="0.5" class="settings-menu-label" style="width: 300px; margin-bottom: 20px; background-color: rgba(255, 255, 255, 0);" />
+        <ui:VisualElement style="flex-direction: row; justify-content: center; gap: 20px;">
+            <ui:Button name="reset-btn" text="Reset" class="main-menu-btn" style="width: 140px;" />
+            <ui:Button name="back-btn" text="Back to Game" class="main-menu-btn" style="width: 140px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -5,6 +5,8 @@ public class PauseMenu : MonoBehaviour
 {
     private VisualElement pauseMenu;
 
+    private IngameSettingsMenu settingsMenu;
+
     public QuizManager quizManagerObject;
 
     bool isPaused;
@@ -14,12 +16,28 @@ public class PauseMenu : MonoBehaviour
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         pauseMenu = root.Q<VisualElement>("pause-menu");
+        settingsMenu = FindFirstObjectByType<IngameSettingsMenu>();
+
         root.Q<Button>("resume-btn").clicked += () => ResumeGame();
         root.Q<Button>("back-to-main-menu-btn").clicked += () => BackToMainMenu();
+        root.Q<Button>("settings-btn").clicked += () => OpenSettings();
         
+
         isPaused = false;
         pauseMenu.style.display = DisplayStyle.None;
+        
+        if (settingsMenu != null)
+            settingsMenu.Hide(); // ensure it's hidden at start
+    
         Time.timeScale = 1;
+    }
+    
+    private void OpenSettings()
+    {
+        Debug.Log("SettingsMenu " + settingsMenu.name);
+        pauseMenu.style.display = DisplayStyle.None;
+        if (settingsMenu != null) settingsMenu.Show();        
+        Debug.Log("Settings opened (in-game)");
     }
 
     private void ResumeGame()
@@ -27,6 +45,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Game Resumed");
         isPaused = false;
         pauseMenu.style.display = DisplayStyle.None;
+        if (settingsMenu != null) settingsMenu.Hide();
         Time.timeScale = 1;
     }
 
@@ -35,12 +54,13 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Game Paused");
         isPaused = true;
         pauseMenu.style.display = DisplayStyle.Flex;
+        if (settingsMenu != null) settingsMenu.Hide();
         Time.timeScale = 0;
     }
 
     private void BackToMainMenu()
     {
-        Loader.LoadMenu();
+        Loader.LoadMainMenu();
     }
 
     // Update is called once per frame

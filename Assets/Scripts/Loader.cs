@@ -56,8 +56,13 @@ public static class Loader
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }
 
-    public static void LoadMenu()
+    public static void LoadMainMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
+    public static void LoadSettingsMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SettingsMenu");
     }
 }
