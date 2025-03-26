@@ -34,11 +34,16 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] float followDelay = 1.5f; // seconds before camera rotates behind player
 
+    private CursorController cursorController;
     private float followTimer = 0f;
-    private bool isCursorVisible = true;
     private bool isDragging = false;
     private Vector3 mouseDownPosition;
     private float mouseDragThreshold = 2f; // pixels
+
+    void Awake()
+    {
+        cursorController = FindFirstObjectByType<CursorController>();
+    }
 
     void LateUpdate()
     {
@@ -60,7 +65,7 @@ public class CameraController : MonoBehaviour
             float dragDistance = (Input.mousePosition - mouseDownPosition).sqrMagnitude;
             if (!isDragging && dragDistance > mouseDragThreshold * mouseDragThreshold)
             {
-                HideCursor(); // Only hide and lock if actual dragging happens
+                cursorController.HideCursor(); // Only hide and lock if actual dragging happens
                 isDragging = true;
             }
 
@@ -74,7 +79,7 @@ public class CameraController : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(2))
         {
-            ShowCursor(); // Release lock on mouse up
+            cursorController.ShowCursor(); // Release lock on mouse up
             isDragging = false;
         }
 
@@ -85,7 +90,7 @@ public class CameraController : MonoBehaviour
 
         if (isPlayerMoving)
         {
-            HideCursor(); // Immediately hide when player moves
+            cursorController.HideCursor(); // Immediately hide when player moves
         }
         // Only rotate behind player when keys pressed
 
@@ -124,22 +129,6 @@ public class CameraController : MonoBehaviour
         // Smoothly move the camera
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, followSmoothTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationDamping);
-    }
-
-    private void ShowCursor()
-    {
-        if (isCursorVisible) return;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        isCursorVisible = true;
-    }
-
-    private void HideCursor()
-    {
-        if (!isCursorVisible) return;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
-        isCursorVisible = false;
     }
 
     public bool IsAlignedBehindPlayer

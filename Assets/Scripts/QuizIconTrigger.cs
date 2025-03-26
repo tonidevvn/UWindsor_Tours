@@ -11,6 +11,7 @@ public class QuizIconTrigger : MonoBehaviour
         if (quizManager != null)
         {
             quizManager.OpenQuiz();
+            Debug.Log("Quiz opened!");
         }
     }
 

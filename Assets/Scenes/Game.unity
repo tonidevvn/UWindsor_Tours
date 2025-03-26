@@ -2600,6 +2600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuizItem2
       objectReference: {fileID: 0}
+    - target: {fileID: 2913963443109490398, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
+      propertyPath: m_TagString
+      value: QuizItem
+      objectReference: {fileID: 0}
     - target: {fileID: 4055449777169685742, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.5
@@ -2639,6 +2643,14 @@ PrefabInstance:
     - target: {fileID: 4055449777169685742, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128361722868591349, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
+      propertyPath: m_TagString
+      value: QuizItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845969575236626723, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
+      propertyPath: m_Radius
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6150533886836536850, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalScale.x
@@ -4819,6 +4831,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805490537}
   m_CullTransparentMesh: 1
+--- !u!1 &806408585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806408587}
+  - component: {fileID: 806408586}
+  m_Layer: 0
+  m_Name: Cursor Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &806408586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806408585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d140460e28e4cd4c9d2fa59f3e56c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursor: {fileID: 2800000, guid: ea835beaf20d85f4a92ccfd1e1e6d82e, type: 3}
+  cursorClicked: {fileID: 2800000, guid: 5e03366bdb42a09488e6204138a3c77c, type: 3}
+--- !u!4 &806408587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806408585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -13978,6 +14036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuizItem
       objectReference: {fileID: 0}
+    - target: {fileID: 2913963443109490398, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
+      propertyPath: m_TagString
+      value: QuizItem
+      objectReference: {fileID: 0}
     - target: {fileID: 4055449777169685742, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.35
@@ -14017,6 +14079,14 @@ PrefabInstance:
     - target: {fileID: 4055449777169685742, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128361722868591349, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
+      propertyPath: m_TagString
+      value: QuizItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845969575236626723, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
+      propertyPath: m_Radius
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6150533886836536850, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalScale.x
@@ -14450,6 +14520,7 @@ SceneRoots:
   - {fileID: 86101448}
   - {fileID: 1212813742}
   - {fileID: 618844583}
+  - {fileID: 806408587}
   - {fileID: 1025548568}
   - {fileID: 2123880406}
   - {fileID: 1065019043}
