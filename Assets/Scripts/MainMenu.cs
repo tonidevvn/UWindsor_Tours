@@ -19,7 +19,7 @@ public class MainMenu: MonoBehaviour
 
     private void StartGame() {
         audioManager.PlayMouseClick();
-        Loader.LoadGame();
+        Loader.LoadCharacterSelection();
     }
 
     private void OpenSettings() {

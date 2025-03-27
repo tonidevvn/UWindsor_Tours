@@ -53,18 +53,13 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        originalStepOffset = characterController.stepOffset;
-        if (animator != null)
-        {
-            if (!animator.isInitialized)
-            {
-                animator.Rebind();
-                animator.Update(0f);
-                animator.SetFloat("MoveAmount", 0f);
-                animator.SetBool("IsGrounded", true);
-                animator.SetBool("IsJumping", false);
-            }
+        originalStepOffset = characterController.stepOffset;       
 
+        if (animator != null && !animator.isInitialized)
+        {
+            animator.SetFloat("MoveAmount", 0f);
+            animator.SetBool("IsGrounded", true);
+            animator.SetBool("IsJumping", false);
         }
     }
 
@@ -155,6 +150,9 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded) {
             animator.SetFloat("MoveAmount", moveAmount, 0.2f, Time.deltaTime);
+            if (moveAmount > 0) {
+                Debug.Log("MoveAmount: " + moveAmount);
+            }
         }
 
         // Move player
