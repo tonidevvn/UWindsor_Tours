@@ -32,7 +32,7 @@ public class CursorController : MonoBehaviour
     private void EndedClick()
     {
         ChangeCursor(cursor);
-        DetectObject();
+        // DetectObject();
     }
 
     private void OnEnable()
