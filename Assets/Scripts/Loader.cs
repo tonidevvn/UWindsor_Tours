@@ -9,7 +9,7 @@ public static class Loader
     private static Action onLoaderCallback;
     private static AsyncOperation loadingAsyncOperation;
 
-    public static void Load(string scene)
+    public static void LoadScene(string scene)
     {
         onLoaderCallback = () =>
         {
@@ -53,7 +53,7 @@ public static class Loader
 
     public static void LoadGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        LoadScene("Game");
     }
 
     public static void LoadCharacterSelection()
