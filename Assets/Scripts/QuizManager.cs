@@ -76,7 +76,7 @@ public class QuizManager : MonoBehaviour
         popupCanvas.SetActive(true);
         HideAllPanels();
         ShowWelcomePanel();
-        playerController.enabled = false;
+        // playerController.enabled = false;
     }
 
     void InitializePrograms()
