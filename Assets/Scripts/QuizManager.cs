@@ -37,10 +37,11 @@ public class QuizManager : MonoBehaviour
     public Text questionText;
     public Button[] answerButtons;
     public Text feedbackText;
+    public Button quitButton;
+
 
     [Header("Results Panel UI")]
     public Text resultText;
-    public Button restartButton;
     public Button closeQuizButton;
 
     private List<ProgramInfo> undergraduatePrograms = new List<ProgramInfo>();
@@ -433,11 +434,11 @@ public class QuizManager : MonoBehaviour
             int index = i;
             answerButtons[i].onClick.AddListener(() => CheckAnswer(index));
         }
+        quitButton.onClick.AddListener(OpenQuiz);
     }
 
     void SetupResultsPanel()
     {
-        restartButton.onClick.AddListener(RestartQuiz);
         closeQuizButton.onClick.AddListener(OpenQuiz);
     }
 
@@ -568,17 +569,11 @@ public class QuizManager : MonoBehaviour
     {
         float percentage = (float)score / currentProgram.questions.Length;
         if (percentage == 1)
-            return "Excellent! You have a great understanding of this program.";
+            return "Congratulations! \nYou have achieved the maximum knowledge coins. Your understanding of this program is exceptional!";
         else if (percentage >= 0.7)
             return "Good job! You have a solid grasp of the program details.";
         else
             return "You might want to review the program information again.";
-    }
-
-    void RestartQuiz()
-    {
-        resultsPanel.SetActive(false);
-        ShowProgramPanel(currentProgram);
     }
 
     public bool IsOpened()
