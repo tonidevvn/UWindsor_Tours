@@ -97,6 +97,6 @@ public class SettingsMenu : MonoBehaviour
     private void ReturnToMainMenu()
     {
         audioManager.PlayMouseClick();
-        Loader.Load("MainMenu");
+        Loader.LoadScene("MainMenu");
     }
 }
