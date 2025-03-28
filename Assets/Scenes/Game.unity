@@ -2757,7 +2757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4055449777169685742, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: -9.63
       objectReference: {fileID: 0}
     - target: {fileID: 4055449777169685742, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2765,7 +2765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4055449777169685742, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -37.05
+      value: -6.19
       objectReference: {fileID: 0}
     - target: {fileID: 4055449777169685742, guid: d3c934fc1071f934c9a8c735c7ea7e16, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6394,7 +6394,7 @@ GameObject:
   - component: {fileID: 1115740004}
   - component: {fileID: 1115740003}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: KnowledgeCoinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6416,8 +6416,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 78.25, y: -92}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 145.1, y: -26.297}
+  m_SizeDelta: {x: 246.724, y: 47.6255}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1115740003
 MonoBehaviour:
@@ -6466,15 +6466,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 24
+  m_fontSizeMax: 48
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 32
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -6504,7 +6504,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -182.08226, w: 50.686005}
+  m_margin: {x: 0, y: 0, z: -0.17875673, w: 4.8583374}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7434,6 +7434,7 @@ MonoBehaviour:
   - {fileID: 9000000, guid: 75f9c1f731e0783428dffee4774f7a73, type: 3}
   spawnPoint: {fileID: 1333960456}
   label: {fileID: 0}
+  playerName: {fileID: 1657211660}
 --- !u!1001 &1343380679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7452,7 +7453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f01f9fc8b7325884ab3733a6c425aa8c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.640948
+      value: -22.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f01f9fc8b7325884ab3733a6c425aa8c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9568,7 +9569,7 @@ GameObject:
   - component: {fileID: 1657211661}
   - component: {fileID: 1657211660}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: PlayerNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9588,10 +9589,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2076397949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -405.25, y: 150.7}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -92.6, y: -17.664}
+  m_SizeDelta: {x: 159.7839, y: 30.3595}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1657211660
 MonoBehaviour:
@@ -9613,7 +9614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: John
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9640,15 +9641,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontSizeMin: 24
+  m_fontSizeMax: 48
+  m_fontStyle: 17
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
