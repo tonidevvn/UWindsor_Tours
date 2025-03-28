@@ -8,6 +8,9 @@ public class PauseMenu : MonoBehaviour
     private IngameSettingsMenu settingsMenu;
 
     public QuizManager quizManagerObject;
+  
+    public GameObject[] dialogBoxes; // the dialog panels
+
 
     bool isPaused;
 
@@ -46,7 +49,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         pauseMenu.style.display = DisplayStyle.None;
         if (settingsMenu != null) settingsMenu.Hide();
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
     }
 
     private void PauseGame()
@@ -55,7 +58,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         pauseMenu.style.display = DisplayStyle.Flex;
         if (settingsMenu != null) settingsMenu.Hide();
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
     }
 
     private void BackToMainMenu()
@@ -71,9 +74,22 @@ public class PauseMenu : MonoBehaviour
             if (quizManagerObject.IsOpened())
             {
                 quizManagerObject.ClosePanel();
+                Time.timeScale = 1f; // Resume game logic
             }
             else
             {
+                if (dialogBoxes != null)
+                {
+                    foreach (GameObject dialogBox in dialogBoxes)
+                    {
+                        if (dialogBox.activeSelf)
+                        {
+                            dialogBox.SetActive(false);
+                            Time.timeScale = 1f; // Resume game logic
+                            return;
+                        }
+                    }
+                }
                 if (isPaused)
                 {
                     ResumeGame();

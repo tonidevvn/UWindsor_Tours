@@ -32,13 +32,17 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] float rotationDamping = 8f; // Smooth rotation factor
 
-    [SerializeField] float followDelay = 1.5f; // seconds before camera rotates behind player
+    [SerializeField] float followDelay = 1f; // seconds before camera rotates behind player
 
     private CursorController cursorController;
     private float followTimer = 0f;
     private bool isDragging = false;
     private Vector3 mouseDownPosition;
     private float mouseDragThreshold = 2f; // pixels
+
+    private bool showFrontView = true;
+    private float frontViewTimer = 0f;
+    private float frontViewDuration = 1f; // how long to stay in front view
 
     void Awake()
     {
@@ -83,43 +87,59 @@ public class CameraController : MonoBehaviour
             isDragging = false;
         }
 
-        // Get player movement input
-        float moveInputX = Input.GetAxis("Horizontal");
-        float moveInputZ = Input.GetAxis("Vertical");
-        bool isPlayerMoving = Mathf.Abs(moveInputX) > 0.1f || Mathf.Abs(moveInputZ) > 0.1f;
-
-        if (isPlayerMoving)
+        // 👇 Initial front-view logic
+        if (showFrontView)
         {
-            cursorController.HideCursor(); // Immediately hide when player moves
-        }
-        // Only rotate behind player when keys pressed
+            frontViewTimer += Time.deltaTime;
 
-        // Check if the player is moving with keyboard (not mouse) and camera is idle
-        bool isManualCameraMoving = Mathf.Abs(horizontalInput) > 0.01f || Mathf.Abs(verticalInput) > 0.01f;
+            float playerY = followTarget.eulerAngles.y;
+            rotationY = Mathf.LerpAngle(rotationY, playerY + 180f, Time.deltaTime * followRotationSpeed);
 
-        // Only start timer when moving but not adjusting camera manually
-        if (isPlayerMoving && !isManualCameraMoving)
-        {
-            followTimer += Time.deltaTime;
-
-            if (followTimer >= followDelay)
+            if (frontViewTimer >= frontViewDuration)
             {
-                float targetY = followTarget.eulerAngles.y;
-                float angle = Mathf.DeltaAngle(rotationY, targetY);
-
-                if (Mathf.Abs(angle) > 0.1f)
-                {
-                    rotationY = Mathf.LerpAngle(rotationY, targetY, Time.deltaTime * followRotationSpeed);
-                }
-                else
-                {
-                    rotationY = targetY; // Snap exactly behind player when close enough
-                }
+                showFrontView = false;
             }
         }
         else
         {
-            followTimer = 0f; // reset if no input or camera is moved
+            // Get player movement input
+            float moveInputX = Input.GetAxis("Horizontal");
+            float moveInputZ = Input.GetAxis("Vertical");
+            bool isPlayerMoving = Mathf.Abs(moveInputX) > 0.1f || Mathf.Abs(moveInputZ) > 0.1f;
+
+            if (isPlayerMoving)
+            {
+                cursorController.HideCursor(); // Immediately hide when player moves
+            }
+            // Only rotate behind player when keys pressed
+
+            // Check if the player is moving with keyboard (not mouse) and camera is idle
+            bool isManualCameraMoving = Mathf.Abs(horizontalInput) > 0.01f || Mathf.Abs(verticalInput) > 0.01f;
+
+            // Only start timer when moving but not adjusting camera manually
+            if (isPlayerMoving && !isManualCameraMoving)
+            {
+                followTimer += Time.deltaTime;
+
+                if (followTimer >= followDelay)
+                {
+                    float targetY = followTarget.eulerAngles.y;
+                    float angle = Mathf.DeltaAngle(rotationY, targetY);
+
+                    if (Mathf.Abs(angle) > 0.1f)
+                    {
+                        rotationY = Mathf.LerpAngle(rotationY, targetY, Time.deltaTime * followRotationSpeed);
+                    }
+                    else
+                    {
+                        rotationY = targetY; // Snap exactly behind player when close enough
+                    }
+                }
+            }
+            else
+            {
+                followTimer = 0f; // reset if no input or camera is moved
+            }
         }
 
         var targetRotation = Quaternion.Euler(rotationX, rotationY, 0);

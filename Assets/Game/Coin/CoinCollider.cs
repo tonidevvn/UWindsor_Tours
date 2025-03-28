@@ -51,37 +51,34 @@ public class CoinCollider : MonoBehaviour
     }
     private void PauseGame()
     {
-        // Disable player and camera movement scripts
-        playerMovementScript.enabled = false;
-        cameraMovementScript.enabled = false;
-
         Time.timeScale = 0f; // Pause game logic
     }
 
     public void ResumeGame()
     {
+        Debug.Log("Resuming game");
         dialogBox.SetActive(false); // Hide the dialog
 
         // Hide all child renderers
-        foreach (MeshRenderer renderer in childRenderers)
-        {
-            renderer.enabled = false;
-        }
+        // foreach (MeshRenderer renderer in childRenderers)
+        // {
+        //     renderer.enabled = false;
+        // }
 
         // Disable the collider
         coinCollider.enabled = false;
 
         // Enable player and camera movement scripts
-        playerMovementScript.enabled = true;
-        cameraMovementScript.enabled = true;
+        // playerMovementScript.enabled = true;
+        // cameraMovementScript.enabled = true;
 
         Time.timeScale = 1f; // Resume game logic
 
-        coinCount++;
+        // coinCount++;
 
-        cointCountText.text = "Knowledge Coins: " + coinCount;
+        // cointCountText.text = "Knowledge Coins: " + coinCount;
 
-        StartCoroutine(RespawnCoin());
+        // StartCoroutine(RespawnCoin());
     }
 
     public void AddCoins(int amount)
