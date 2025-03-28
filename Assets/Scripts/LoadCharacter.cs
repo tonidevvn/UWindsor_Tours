@@ -9,6 +9,7 @@ public class LoadCharacter : MonoBehaviour
 	public Avatar[] characterAvatars;
 	public Transform spawnPoint;
 	public TMP_Text label;
+	public TMP_Text playerName;
 	private Animator animator;
 
     void Awake()
@@ -23,6 +24,12 @@ public class LoadCharacter : MonoBehaviour
     void Start()
 	{
     	animator = GetComponent<Animator>();
+
+ 		// Load previously entered player name
+        if (PlayerPrefs.HasKey("PlayerName"))
+        {
+            playerName.text = PlayerPrefs.GetString("PlayerName");
+        }
 
 		int selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
 		
