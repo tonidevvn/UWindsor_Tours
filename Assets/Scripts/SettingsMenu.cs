@@ -61,7 +61,7 @@ public class SettingsMenu : MonoBehaviour
     void Start()
     {
         // Load saved values (or use default if none)
-        bool isFullscreen = PlayerPrefs.GetInt("fullscreen", 1) == 1;
+        bool isFullscreen = PlayerPrefs.GetInt("fullscreen", 0) == 1;
         int maxQuality = QualitySettings.names.Length - 1;
         int qualityLevel = Mathf.Clamp(PlayerPrefs.GetInt("quality", 2), 0, maxQuality);
 
@@ -83,12 +83,12 @@ public class SettingsMenu : MonoBehaviour
     private void ResetSettings()
     {
         audioManager.PlayMouseClick();
-        fullscreenToggle.value = true;
+        fullscreenToggle.value = false;
         graphicsDropdown.value = "Medium";
         musicSlider.value = 0.5f;
         sfxSlider.value = 0.5f;
 
-        Screen.fullScreen = true;
+        Screen.fullScreen = false;
         QualitySettings.SetQualityLevel(1);
         audioManager.SetMusicVolume(0.5f);
         audioManager.SetSFXVolume(0.5f);
