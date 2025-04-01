@@ -57,12 +57,17 @@ Need a break during your tour? Use the pause menu to resume, adjust settings, or
 
 ## 🖼️ Screenshots
 
-- ![](Screenshots/img1.png)
-- ![](Screenshots/img2.png)
-- ![](Screenshots/img3.png)
-- ![](Screenshots/img4.png)
-- ![](Screenshots/img5.png)
-- ![](Screenshots/img6.png)
+![](Screenshots/img1.png)
+
+![](Screenshots/img2.png)
+
+![](Screenshots/img3.png)
+
+![](Screenshots/img4.png)
+
+![](Screenshots/img5.png)
+
+![](Screenshots/img6.png)
 
 ## Backup resources
 
