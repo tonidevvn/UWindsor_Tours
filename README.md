@@ -34,13 +34,17 @@ Need a break during your tour? Use the pause menu to resume, adjust settings, or
 
 ---
 
-## 🧠 Technologies
+## ⚛ Technologies
 
-- Unity 2022.3 (WebGL Build)
-- C# (Game Logic, UI Systems, Player Control)
+- Unity + C# (Game Logic, UI Systems, Player Control)
 - UI Toolkit (Unity’s modern UI system)
-- WebGL Deployment (Hosted on Itch.io)
+- WebGL Deployment (Hosted on Itch.io or Github Pages)
 - TailwindCSS + TypeScript (for Landing Page)
+
+## 🛠️ Tools
+
+- Unity 6000.0.44f1 (WebGL Build)
+- VS Code 1.98
 
 ---
 
